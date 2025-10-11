@@ -24,7 +24,7 @@ export default function Sidebar() {
                 <h1 className={`
                     text-2xl font-semibold
                     text-center
-                    `}>Money Tracker</h1>
+                    `}>Coinly</h1>
                 <nav className={`
                     space-y-2
                     ml-12
