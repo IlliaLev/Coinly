@@ -17,6 +17,7 @@ export default function Toggle() {
         flex items-center
         rounded-full
         ${isOn ? "bg-[#0F2443]" : "bg-[#A6C841]"}
+        cursor-pointer
         transition-colors duration-300
         `}>
             <div className={`
