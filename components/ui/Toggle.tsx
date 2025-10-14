@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
-
 import { Sun, Moon } from "lucide-react";
 
+import { useThemeStore } from "@/lib/useThemeStore";
+
 export default function Toggle() {
-    const [isOn, setIsOn] = useState(false);
+    const {theme, toggleTheme} = useThemeStore();
 
     const toggle = () => {
-        setIsOn(!isOn);
+        toggleTheme();
     }
 
     return (
@@ -16,7 +16,8 @@ export default function Toggle() {
         w-14 h-8 
         flex items-center
         rounded-full
-        ${isOn ? "bg-[#0F2443]" : "bg-[#A6C841]"}
+        dark:bg-[#0F2443] 
+        bg-[#A6C841]
         cursor-pointer
         transition-colors duration-300
         `}>
@@ -25,11 +26,12 @@ export default function Toggle() {
                 flex items-center justify-center
                 rounded-full
                 text-white
-                ${isOn ? "bg-[#2659A6]/40" : "bg-[#829E2E]/40"}
-                ${isOn ? "translate-x-6" : "translate-x-0"}
+                dark:bg-[#2659A6]/40 
+                bg-[#829E2E]/40
+                ${theme === "dark" ? "translate-x-6" : "translate-x-0"}
                 transition-all duration-500
                 `}>
-                {isOn ? 
+                {theme === "dark" ? 
                     <Moon className={`
                         w-7 h-7
                         `} strokeWidth={2.5}></Moon>

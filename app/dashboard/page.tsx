@@ -1,6 +1,6 @@
 "use client"
 
-import {useAppStore} from "@/lib/store";
+import {useAppStore} from "@/lib/useAppStore";
 
 export default function Dashboard() {
     const reports = useAppStore((state) => state.reports);
@@ -16,7 +16,10 @@ export default function Dashboard() {
     const profit = totalIncome - totalExpense;
 
     return (
-        <div>
+        <div className={`
+        bg-gray-500
+        dark:bg-gray-800
+        `}>
 
             <div>Income: {totalIncome}</div>
             <div>Expense: {totalExpense}</div>

@@ -2,7 +2,7 @@
 
 import {useState} from "react";
 
-import { useAppStore } from "@/lib/store";
+import { useAppStore } from "@/lib/useAppStore";
 
 export default function ReportPage() {
     const [title, setTitle] = useState("");
