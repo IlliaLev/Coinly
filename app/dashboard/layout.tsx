@@ -13,7 +13,8 @@ export default function DashboardLayout({children, } : {children: React.ReactNod
                 w-[calc(100vw-256px)]
                 `}>
                 <main className={`
-                    w-full
+                    w-full flex flex-col h-full
+                    bg-[#24262D]
                     `}>
                     <Navbar />
                     {children}

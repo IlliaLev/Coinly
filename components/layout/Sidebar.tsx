@@ -21,9 +21,10 @@ export default function Sidebar() {
                 mt-5
                 `}>
                 <h1 className={`
-                    text-2xl font-semibold
+                    text-4xl font-semibold
                     text-center
                     text-[#FF0035]
+                    drop-shadow-[#FF0035] drop-shadow-sm
                     `}>Coinly</h1>
                 <nav className={`
                     space-y-4

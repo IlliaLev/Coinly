@@ -29,6 +29,7 @@ export default function SdButton({href, label, Icon} : SdButtonProps) {
                 `}>
                     <Icon size={20} className={`
                         text-[#FF0035]
+                        drop-shadow-md drop-shadow-[#FF0035]
                         `}></Icon>
                     {label}
         </Link>
