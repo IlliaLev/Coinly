@@ -17,8 +17,8 @@ export default function Dashboard() {
 
     return (
         <div className={`
-        bg-gray-500
-        dark:bg-gray-800
+            h-[calc(100vh-56px)]
+            bg-[#24262D]
         `}>
 
             <div>Income: {totalIncome}</div>

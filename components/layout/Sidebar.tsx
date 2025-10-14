@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { BarChart3, History, PlusCircle } from "lucide-react";
-import { usePathname } from "next/navigation";
+import SdButton from "@/components/ui/SdButton";
 
 const links = [
     {href: "/dashboard", label: "Overview", icon: BarChart3}, 
@@ -10,37 +9,31 @@ const links = [
     {href: "/dashboard/report", label: "Report", icon: PlusCircle}];
 
 export default function Sidebar() {
-    const pathname = usePathname();
-
+    
     return (
         <aside className={`
-        w-64 bg-white 
+        w-64 bg-[#131416]
         flex flex-col
         
         `}>
             <div className={`
+                flex flex-col items-center
                 mt-5
                 `}>
                 <h1 className={`
                     text-2xl font-semibold
                     text-center
+                    text-[#FF0035]
                     `}>Coinly</h1>
                 <nav className={`
-                    space-y-2
-                    ml-12
+                    space-y-4
                     mt-8
+                    w-max
                     `}>
                     {links.map(({href, label, icon: Icon}) => (
-                        <Link 
-                        key={href}
-                        href={href}
-                        className={`
-                            flex flex-row 
+                        <SdButton key={href} href={href} label={label} Icon={Icon}>
 
-                            `}>
-                            <Icon size={20}></Icon>
-                            {label}
-                        </Link>
+                        </SdButton>
                     ))}
                 </nav>
             </div>

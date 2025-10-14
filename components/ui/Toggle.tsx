@@ -2,13 +2,13 @@
 
 import { Sun, Moon } from "lucide-react";
 
-import { useThemeStore } from "@/lib/useThemeStore";
+import { useTheme } from "next-themes";
 
 export default function Toggle() {
-    const {theme, toggleTheme} = useThemeStore();
+    const {theme, setTheme} = useTheme();
 
     const toggle = () => {
-        toggleTheme();
+        setTheme(theme === "light" ? "dark" : "light");
     }
 
     return (
@@ -18,6 +18,7 @@ export default function Toggle() {
         rounded-full
         dark:bg-[#0F2443] 
         bg-[#A6C841]
+        
         cursor-pointer
         transition-colors duration-300
         `}>
