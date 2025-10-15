@@ -1,9 +1,41 @@
 "use client";
 
+import {motion, Variants} from "framer-motion";
+
 import {useAppStore} from '@/lib/useAppStore';
 import { useFilterStore } from '@/lib/useFilterStore';
 
 import FilterButton from '@/components/ui/FilterButton';
+import HistoryReport from '@/components/ui/HistoryReport';
+
+const historyReportList: Variants = {
+    hidden: {
+        opacity: 0,
+    },
+    show: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.5,
+            ease: "easeOut",
+        },
+    },
+}
+
+const historyReport: Variants = {
+    hidden: {
+        opacity: 0,
+        y: 100,
+    },
+    show: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            type: "spring",
+            stiffness: 120,
+            damping: 15,
+        },
+    },
+}
 
 export default function HistoryPage() {
     const reports = useAppStore((state) => state.reports);
@@ -22,7 +54,14 @@ export default function HistoryPage() {
                     drop-shadow-sm drop-shadow-[#FF0035]
                     ml-auto mr-auto
                     `}>
-                    All Reports
+                    {filter === "income" ? 
+                        "Income Reports" 
+                        :
+                        filter === "expense" ? 
+                            "Expense Reports" 
+                            : 
+                            "All Reports"
+                    }
                 </div>
                 <div className={`
                     flex flex-row items-center
@@ -37,11 +76,16 @@ export default function HistoryPage() {
                 bg-[#FF0035] 
                 drop-shadow-sm drop-shadow-[#FF0035]
                 `}></div>
-            <ul>
+            <motion.ul variants={historyReportList} initial="hidden" animate="show" className={`
+                ml-7 mr-7 mt-7
+                space-y-3
+                `}>
                 {reports.map((report, idx) => (
-                    <li key={idx}>Title: {report.title}   Type: {report.type}   Amount: {report.amount}</li>
+                    <motion.li variants={historyReport}  key={idx}>
+                        <HistoryReport title={report.title} type={report.type} amount={report.amount}></HistoryReport>
+                    </motion.li>
                 ))}
-            </ul>
+            </motion.ul>
         </div>
     );
 }
