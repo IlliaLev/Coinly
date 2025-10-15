@@ -11,7 +11,7 @@ import PopupButton from "./PopupButton";
 import { useFilterStore } from "@/lib/useFilterStore";
 
 export default function FilterButton() {
-    const {setFilter} = useFilterStore();
+    const {filter, setFilter} = useFilterStore();
     const [isOpen, setIsOpen] = useState(false);
 
     const togglePopup = (filter: string) => {
@@ -64,7 +64,7 @@ export default function FilterButton() {
         <div className={`
             relative inline-block content-center
         `}>
-            <motion.button variants={button} initial="hidden" exit="hidden" animate="animate" whileHover="show" whileTap="tap" whileFocus="tap" onClick={() => togglePopup("none")}>
+            <motion.button variants={button} initial="hidden" exit="hidden" animate="animate" whileHover="show" whileTap="tap" whileFocus="tap" onClick={() => togglePopup(filter)}>
             <ListFilter size={30} className={`
                 text-[#FF0035]
                 drop-shadow-sm drop-shadow-[#FF0035]
@@ -89,13 +89,16 @@ export default function FilterButton() {
                             mt-3 mb-1
                             `}>
                             <li onClick={() => togglePopup("income")}>
-                                <PopupButton title="Income"></PopupButton>
+                                <PopupButton title="Income" isSelected={filter === "income" ? true : false}></PopupButton>
                             </li>
                             <li onClick={() => togglePopup("expense")}>
-                                <PopupButton title="Expense"></PopupButton>
+                                <PopupButton title="Expense" isSelected={filter === "expense" ? true : false}></PopupButton>
                             </li>
                             <li onClick={() => togglePopup("date")}>
-                                <PopupButton title="Date"></PopupButton>
+                                <PopupButton title="Date" isSelected={filter === "date" ? true : false}></PopupButton>
+                            </li>
+                            <li onClick={() => togglePopup("none")}>
+                                <PopupButton title="No Filters" isSelected={filter === "none" ? true : false}></PopupButton>
                             </li>
                         </ul>
                     </motion.div>

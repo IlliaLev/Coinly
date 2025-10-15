@@ -2,13 +2,14 @@
 
 interface PopupButtonProps {
     title: string,
+    isSelected: boolean,
 }
 
-export default function PopupButton({title} : PopupButtonProps) {
+export default function PopupButton({title, isSelected} : PopupButtonProps) {
     return (
         <div>
             <button className={`
-            text-[#686E78]
+            ${isSelected ? "text-[#9297A0]" : "text-[#686E78]"}
             hover:text-[#9297A0]
             transition duration-300
                 `}>
