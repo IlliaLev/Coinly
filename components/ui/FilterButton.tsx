@@ -6,11 +6,17 @@ import {ListFilter} from "lucide-react";
 
 import {motion, Variants, AnimatePresence} from "framer-motion";
 
+import PopupButton from "./PopupButton";
+
+import { useFilterStore } from "@/lib/useFilterStore";
+
 export default function FilterButton() {
+    const {setFilter} = useFilterStore();
     const [isOpen, setIsOpen] = useState(false);
 
-    const togglePopup = () => {
+    const togglePopup = (filter: string) => {
         setIsOpen((prev) => !prev);
+        setFilter(filter);
     }
 
     const button: Variants = {
@@ -58,7 +64,7 @@ export default function FilterButton() {
         <div className={`
             relative inline-block content-center
         `}>
-            <motion.button variants={button} initial="hidden" exit="hidden" whileHover="show" whileTap="tap" whileFocus="tap" onClick={togglePopup}>
+            <motion.button variants={button} initial="hidden" exit="hidden" animate="animate" whileHover="show" whileTap="tap" whileFocus="tap" onClick={() => togglePopup("none")}>
             <ListFilter size={30} className={`
                 text-[#FF0035]
                 drop-shadow-sm drop-shadow-[#FF0035]
@@ -70,6 +76,7 @@ export default function FilterButton() {
                     <motion.div variants={popup} initial="hidden" exit="hidden" animate="show" className={`
                         absolute right-0
                         mt-4 w-22
+                        pb-1
                         rounded-lg bg-[#131416]
                         z-50
                     `}>
@@ -77,15 +84,18 @@ export default function FilterButton() {
                             text-lg text-[#FF0035] font-semibold
                             drop-shadow-sm drop-shadow-[#FF0035]
                             `}>Filter by:</p>
-                        <ul className="space-y-1">
-                            <li>
-                                <button >Income</button>
+                        <ul className={`
+                            space-y-1 
+                            mt-3 mb-1
+                            `}>
+                            <li onClick={() => togglePopup("income")}>
+                                <PopupButton title="Income"></PopupButton>
                             </li>
-                            <li>
-                                <button>Expense</button>
+                            <li onClick={() => togglePopup("expense")}>
+                                <PopupButton title="Expense"></PopupButton>
                             </li>
-                            <li>
-                                <button>Date</button>
+                            <li onClick={() => togglePopup("date")}>
+                                <PopupButton title="Date"></PopupButton>
                             </li>
                         </ul>
                     </motion.div>

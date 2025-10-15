@@ -13,7 +13,7 @@ interface AppState {
 }
 
 export const useAppStore = create<AppState>()(
-    persist(
+    persist<AppState>(
         (set) => ({
             reports: [],
             addReport: (r: Report) => set((state) => ({reports: [...state.reports, r]})),

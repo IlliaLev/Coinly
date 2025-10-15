@@ -1,11 +1,13 @@
 "use client";
 
 import {useAppStore} from '@/lib/useAppStore';
+import { useFilterStore } from '@/lib/useFilterStore';
 
 import FilterButton from '@/components/ui/FilterButton';
 
 export default function HistoryPage() {
     const reports = useAppStore((state) => state.reports);
+    const {filter} = useFilterStore();
     
     return (
         <div>
